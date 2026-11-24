@@ -1,344 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chirantan Chakraborty | Data Science &amp; Machine Learning</title>
-  <meta name="description" content="Portfolio of Chirantan Chakraborty, BS in Data Science and Applications at IIT Madras. Machine learning, AI and full-stack projects.">
+  <meta name="theme-color" content="#050914">
+  <meta name="description" content="Chirantan Chakraborty — Data Science student and technology enthusiast exploring AI, machine learning, computational systems and emerging technology.">
+  <title>Chirantan Chakraborty — Deep Tech Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --paper: #EDF1F7;
-      --ink: #101B3D;
-      --indigo: #26358F;
-      --marigold: #F5B301;
-      --muted: #4A5578;
-      --line: #C9D2E3;
-      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-      --body: "Newsreader", Georgia, "Times New Roman", serif;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --paper: #0F1630;
-        --ink: #EDF1F7;
-        --muted: #A7B2D1;
-        --line: #2A3560;
-      }
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--body);
-      font-size: 1.15rem;
-      line-height: 1.65;
-    }
-    a { color: inherit; }
-    :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 2px; }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    h1, h2, h3 { font-family: var(--display); line-height: 1.02; margin: 0; letter-spacing: -0.02em; }
-
-    /* ---------- nav ---------- */
-    header.nav { padding: 22px 0; }
-    header.nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .mark { font-family: var(--display); font-weight: 800; font-size: 1.25rem; text-decoration: none; }
-    .mark span { color: var(--marigold); }
-    nav a { font-family: var(--display); font-weight: 500; font-size: 1rem; text-decoration: none; margin-left: 22px; padding-bottom: 2px; border-bottom: 2px solid transparent; }
-    nav a:hover { border-color: var(--marigold); }
-
-    /* ---------- hero ---------- */
-    .hero { padding: 36px 0 72px; }
-    .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
-    .hero h1 { font-weight: 800; font-size: clamp(3rem, 8.4vw, 6.4rem); }
-    .hero h1 .last { color: var(--indigo); }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero h1 .last { color: var(--marigold); } }
-    .lede { max-width: 34ch; margin: 24px 0 28px; font-size: 1.3rem; color: var(--muted); }
-    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
-      font-family: var(--display); font-weight: 500; font-size: 1rem;
-      padding: 12px 20px; border-radius: 999px; text-decoration: none;
-      border: 2px solid var(--ink); transition: background .15s, color .15s, transform .15s;
-    }
-    .btn.solid { background: var(--ink); color: var(--paper); }
-    .btn:hover { background: var(--marigold); color: #101B3D; border-color: var(--marigold); transform: translateY(-2px); }
-
-    /* the one memorable thing: a plot you can add points to */
-    .plot-box { background: var(--ink); color: var(--paper); border-radius: 22px; padding: 18px 18px 14px; }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .plot-box { background: #18214A; } }
-    .plot-box svg { display: block; width: 100%; height: auto; cursor: crosshair; touch-action: manipulation; }
-    .plot-box .axis { stroke: #5C6BA8; stroke-width: 1; }
-    .plot-box .dot { fill: #EDF1F7; transition: r .25s ease; }
-    .plot-box .dot.new { fill: var(--marigold); }
-    .plot-box .fit { stroke: var(--marigold); stroke-width: 3; stroke-linecap: round; transition: all .25s ease; }
-    .plot-cap { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; font-size: .98rem; color: #C9D2E3; }
-    .plot-cap button {
-      font: 500 .9rem var(--display); color: #101B3D; background: var(--marigold);
-      border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer;
-    }
-    .plot-cap button.ghost { background: transparent; color: #EDF1F7; border: 1.5px solid #5C6BA8; }
-    .plot-cap .acts { display: flex; gap: 8px; }
-
-    /* ---------- sections ---------- */
-    section { padding: 72px 0; }
-    .sec-title { font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.2rem); margin-bottom: 28px; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .about-grid p { margin: 0 0 1em; max-width: 52ch; }
-    .learning { border-left: 4px solid var(--marigold); padding-left: 20px; }
-    .learning h3 { font-size: 1.4rem; margin-bottom: 10px; }
-    .learning ul { margin: 0; padding: 0; list-style: none; }
-    .learning li { padding: 6px 0; border-bottom: 1px solid var(--line); }
-    .learning li:last-child { border: 0; }
-
-    /* ---------- projects ---------- */
-    .project { border-radius: 26px; padding: clamp(28px, 5vw, 56px); margin-bottom: 24px; }
-    .project.a { background: var(--indigo); color: #fff; }
-    .project.b { background: var(--marigold); color: #101B3D; }
-    .project .tag { font-family: var(--display); font-weight: 500; font-size: .95rem; opacity: .85; margin-bottom: 14px; }
-    .project h3 { font-weight: 800; font-size: clamp(2.2rem, 6vw, 4.2rem); margin-bottom: 18px; }
-    .project p { max-width: 56ch; margin: 0 0 22px; font-size: 1.2rem; }
-    .project .go {
-      font-family: var(--display); font-weight: 500; text-decoration: none;
-      display: inline-block; padding: 11px 20px; border-radius: 999px; border: 2px solid currentColor;
-      transition: background .15s, color .15s;
-    }
-    .project.a .go:hover { background: #fff; color: var(--indigo); }
-    .project.b .go:hover { background: #101B3D; color: var(--marigold); border-color: #101B3D; }
-
-    /* ---------- badges ---------- */
-    .badge-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .badge { border: 2px solid var(--ink); border-radius: 16px; padding: 12px 18px; }
-    .badge b { font-family: var(--display); font-weight: 800; font-size: 1.15rem; display: block; line-height: 1.1; }
-    .badge small { color: var(--muted); font-size: .95rem; }
-    .badge.gold { background: var(--marigold); border-color: var(--marigold); color: #101B3D; }
-    .badge.gold small { color: #3a3000; }
-
-    /* ---------- education timeline (a real sequence) ---------- */
-    .timeline { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 3px solid var(--indigo); }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .timeline { border-color: var(--marigold); } }
-    .timeline li { position: relative; padding: 0 0 34px 22px; }
-    .timeline li::before {
-      content: ""; position: absolute; left: -37px; top: 10px; width: 17px; height: 17px;
-      background: var(--marigold); border: 3px solid var(--paper); border-radius: 50%;
-      box-shadow: 0 0 0 2px var(--indigo);
-    }
-    .timeline h3 { font-size: 1.5rem; margin-bottom: 4px; }
-    .timeline .when { font-family: var(--display); font-weight: 500; color: var(--muted); font-size: .98rem; }
-    .timeline p { margin: 6px 0 0; color: var(--muted); }
-
-    /* ---------- contact ---------- */
-    .contact { background: var(--ink); color: var(--paper); border-radius: 30px; padding: clamp(32px, 6vw, 64px); }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact { background: #18214A; } }
-    .contact h2 { font-weight: 800; font-size: clamp(2.2rem, 6vw, 4.4rem); margin-bottom: 18px; }
-    .contact .mail { font-family: var(--display); font-weight: 500; font-size: clamp(1.05rem, 3.4vw, 1.9rem); color: var(--marigold); word-break: break-all; }
-    .contact .links { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 26px; font-family: var(--display); font-weight: 500; }
-    .contact .links a { text-decoration: none; border-bottom: 2px solid var(--marigold); padding-bottom: 2px; }
-    .contact .links a:hover { background: var(--marigold); color: #101B3D; }
-    footer { padding: 32px 0 48px; color: var(--muted); font-size: .98rem; }
-
-    @media (max-width: 820px) {
-      .hero .wrap, .about-grid { grid-template-columns: 1fr; }
-      nav a { margin: 0 16px 0 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { transition: none !important; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap">
-      <a class="mark" href="#top">CC<span>.</span></a>
-      <nav aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#journey">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <canvas id="network" aria-hidden="true"></canvas>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#home" aria-label="Chirantan home">C<span>.</span></a>
+      <div class="top-meta"><span class="status-dot"></span> AVAILABLE FOR COLLABORATION <span class="meta-divider">/</span> INDIA</div>
+      <a class="top-link" href="https://www.linkedin.com/in/chirantan-chakraborty" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+    </header>
 
-  <main id="top">
-    <div class="hero">
-      <div class="wrap">
-        <div>
-          <h1>Chirantan <span class="last">Chakraborty</span></h1>
-          <p class="lede">Diploma-level student at IIT Madras, curious about machine learning, AI and data science, and building things with code.</p>
-          <div class="btns">
-            <a class="btn solid" href="#projects">See my projects</a>
-            <a class="btn" href="#contact">Get in touch</a>
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="identity">
+          <div class="avatar-mark">CC<span>_</span></div>
+          <div><div class="identity-name">Chirantan<br>Chakraborty</div><div class="identity-role">DEVELOPER · DATA SCIENCE</div></div>
+        </div>
+        <div class="side-rule"></div>
+        <div class="nav-label">PORTFOLIO INDEX</div>
+        <nav id="section-nav" class="section-nav" aria-label="Portfolio sections">
+          <button class="nav-item active" data-page="0"><span>01</span> Overview <i>↗</i></button>
+          <button class="nav-item" data-page="1"><span>02</span> About <i>↗</i></button>
+          <button class="nav-item" data-page="2"><span>03</span> Capabilities <i>↗</i></button>
+          <button class="nav-item" data-page="3"><span>04</span> Projects <i>↗</i></button>
+          <button class="nav-item" data-page="4"><span>05</span> Experience <i>↗</i></button>
+          <button class="nav-item" data-page="5"><span>06</span> Education <i>↗</i></button>
+          <button class="nav-item" data-page="6"><span>07</span> Contact <i>↗</i></button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="mono tiny muted">CURRENTLY EXPLORING</div>
+          <div class="explore-tags"><span>Neural Networks</span><span>LLMs</span><span>Systems</span></div>
+          <div class="side-social"><a href="mailto:cchirantan0@gmail.com">EMAIL ↗</a><a href="https://www.linkedin.com/in/chirantan-chakraborty" target="_blank" rel="noreferrer">LINKEDIN ↗</a></div>
+        </div>
+      </aside>
+
+      <section class="content-area">
+        <div class="content-topline"><span id="page-kicker">INTRODUCTION / 001</span><span class="mono muted">PERSONAL PORTFOLIO — 2026</span></div>
+
+        <section class="page active" data-title="Overview" id="home">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="pulse"></span> THINKING IN SYSTEMS. BUILDING WITH CODE.</div>
+              <h1>Curious about<br>what's <em>next.</em></h1>
+              <p class="hero-lead">I'm <strong>Chirantan Chakraborty</strong> — a Data Science student, developer and technology enthusiast exploring the ideas shaping intelligent systems.</p>
+              <p class="body-copy">From machine learning and neural networks to backend engineering and emerging computation, I enjoy understanding how things work — and turning that understanding into useful projects.</p>
+              <div class="hero-actions"><button class="primary-btn" data-go="3">EXPLORE PROJECTS <span>↗</span></button><button class="text-btn" data-go="6">GET IN TOUCH <span>→</span></button></div>
+            </div>
+            <div class="hero-visual">
+              <div class="visual-label mono">FIG 01. / NETWORK OF IDEAS</div>
+              <div class="orb-wrap"><div class="orb-ring ring-a"></div><div class="orb-ring ring-b"></div><div class="orb-core"><span>AI</span></div><span class="orbit-node node-a"></span><span class="orbit-node node-b"></span><span class="orbit-node node-c"></span><span class="orbit-node node-d"></span></div>
+              <div class="visual-caption mono">LEARNING · EXPERIMENTING · ITERATING</div>
+            </div>
           </div>
-        </div>
-
-        <figure class="plot-box" style="margin:0">
-          <svg id="plot" viewBox="0 0 400 320" role="img" aria-label="Scatter plot with a line of best fit. Click to add points and the line refits.">
-            <line class="axis" x1="30" y1="290" x2="385" y2="290"/>
-            <line class="axis" x1="30" y1="20" x2="30" y2="290"/>
-            <g id="dots"></g>
-            <line id="fit" class="fit" x1="30" y1="200" x2="385" y2="120"/>
-          </svg>
-          <figcaption class="plot-cap">
-            <span id="readout" aria-live="polite">Click the plot to add data.</span>
-            <span class="acts">
-              <button type="button" id="rand">Add point</button>
-              <button type="button" id="reset" class="ghost">Reset</button>
-            </span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <section id="about">
-      <div class="wrap about-grid">
-        <div>
-          <h2 class="sec-title">About me</h2>
-          <p>I'm studying for a BS in Data Science and Applications at IIT Madras, and I'm now at the Diploma level. I enjoy machine learning, artificial intelligence and data science, and I like turning what I learn into working projects.</p>
-          <p>Right now I'm learning Java and Python side by side.</p>
-        </div>
-        <div class="learning">
-          <h3>Right now</h3>
-          <ul>
-            <li>Learning Java and Python at the same time</li>
-            <li>Exploring machine learning and AI</li>
-            <li>Building full-stack projects</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="wrap">
-        <h2 class="sec-title">Projects</h2>
-
-        <article class="project a">
-          <div class="tag">Extra-curricular project</div>
-          <h3>Wanderlust</h3>
-          <p>A full-stack, dynamic and scalable listing platform. You can store, edit and delete your own listings, and read and write ratings and reviews on other people's listings.</p>
-          <a class="go" href="https://github.com/WeiWuxian0609/wanderlust.git" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
-
-        <article class="project b">
-          <div class="tag">Curricular project</div>
-          <h3>Intelliquest 2.0</h3>
-          <p>A multi-user quiz preparation app. Users can take quizzes as many times as they like across multiple courses and check their answers, while administrators control the site.</p>
-          <a class="go" href="https://github.com/23f1000890/quiz-master-v2.git" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="badges">
-      <div class="wrap">
-        <h2 class="sec-title">Badges from IIT Madras</h2>
-        <div class="badge-row">
-          <div class="badge gold"><b>Top course grade</b><small>Topper</small></div>
-          <div class="badge gold"><b>Foundation level</b><small>Finisher</small></div>
-          <div class="badge"><b>Active in forum</b><small>Community</small></div>
-          <div class="badge"><b>Completed all assessments</b><small>Many courses</small></div>
-          <div class="badge"><b>Completed most assessments</b><small>Many courses</small></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="journey">
-      <div class="wrap">
-        <h2 class="sec-title">Education</h2>
-        <ol class="timeline">
-          <li>
-            <div class="when">2020 to 2022</div>
-            <h3>Baranagar Ramakrishna Mission Ashrama High School (H.S)</h3>
-            <p>Class XI-XII, Science Stream. Kolkata, West Bengal.</p>
-          </li>
-          <li>
-            <div class="when">2023 to present</div>
-            <h3>Indian Institute of Technology Madras</h3>
-            <p>Bachelor of Science in Data Science and Applications, now at the Diploma level. Chennai, Tamil Nadu.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="contact">
-          <h2>Let's talk</h2>
-          <div class="mail"><!--email_off-->23f1000890@ds.study.iitm.ac.in<!--/email_off--></div>
-          <div class="links">
-            <a href="https://github.com/WeiWuxian0609" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/chirantan-chakraborty" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://www.instagram.com/chirantanchakraborty2906/" target="_blank" rel="noopener">Instagram</a>
+          <div class="metrics-row">
+            <div><span class="metric-index">01 / FOCUS</span><strong>AI & ML</strong><small>Intelligent computation</small></div>
+            <div><span class="metric-index">02 / PRACTICE</span><strong>Software</strong><small>Building end-to-end systems</small></div>
+            <div><span class="metric-index">03 / CURIOSITY</span><strong>Deep Tech</strong><small>Exploring what's emerging</small></div>
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
+          <div class="quote-line"><span>“</span><p>Stay curious. Understand deeply. Build deliberately.</p></div>
+        </section>
 
-  <footer>
-    <div class="wrap">Chirantan Chakraborty. IIT Madras BS in Data Science and Applications.</div>
-  </footer>
+        <section class="page" data-title="About" id="about">
+          <div class="section-heading"><div class="eyebrow">02 / THE PERSON BEHIND THE CODE</div><h2>About <em>me.</em></h2><p>A learner's mindset, an engineer's curiosity.</p></div>
+          <div class="about-layout">
+            <div class="about-main">
+              <p class="large-copy">I’m a student of the <strong>BS in Data Science and Applications</strong> programme at the <strong>Indian Institute of Technology Madras</strong>.</p>
+              <p>I’m interested in the intersection of intelligent algorithms, software systems and the science that makes modern technology possible. I like moving between theory and implementation — learning a concept, testing it, and understanding where it fits in a larger system.</p>
+              <p>My learning journey spans Python and Java, machine learning workflows, backend development, databases and web technologies. I’m also curious about deep learning, robotics, space technology, cybersecurity and quantum computing.</p>
+              <p>This portfolio is a living record of that journey: projects, experiments, things learned and ideas worth exploring.</p>
+            </div>
+            <aside class="about-aside">
+              <div class="info-card"><span class="card-label">CURRENT CHAPTER</span><strong>Learning by building</strong><p>Turning coursework and curiosity into practical projects.</p></div>
+              <div class="info-card"><span class="card-label">WORKING PRINCIPLE</span><strong>First principles</strong><p>Understand the fundamentals before reaching for abstractions.</p></div>
+              <div class="info-card"><span class="card-label">INTEREST MAP</span><div class="interest-cloud"><span>AI / ML</span><span>Deep Learning</span><span>Robotics</span><span>Space</span><span>Systems</span><span>Quantum</span></div></div>
+            </aside>
+          </div>
+        </section>
 
-  <script>
-    // Scatter plot with a live least-squares line of best fit.
-    (function () {
-      var svg = document.getElementById("plot");
-      var dotsG = document.getElementById("dots");
-      var fit = document.getElementById("fit");
-      var readout = document.getElementById("readout");
-      var NS = "http://www.w3.org/2000/svg";
-      var X0 = 30, X1 = 385, Y0 = 20, Y1 = 290;
-      var start = [[60,240],[95,215],[130,225],[165,180],[200,190],[235,150],[270,140],[305,110],[340,95]];
-      var pts = [];
+        <section class="page" data-title="Capabilities" id="skills">
+          <div class="section-heading"><div class="eyebrow">03 / TOOLKIT & LEARNING</div><h2>Technical <em>stack.</em></h2><p>A growing toolkit across software engineering and data science.</p></div>
+          <div class="skill-grid">
+            <article class="skill-card"><div class="skill-number">01</div><h3>Programming</h3><p>Writing code, solving problems and building application logic.</p><div class="chips"><span>Python</span><span>Java</span><span>SQL</span><span>JavaScript</span></div></article>
+            <article class="skill-card"><div class="skill-number">02</div><h3>AI & Data Science</h3><p>Working with data, predictive models and machine learning workflows.</p><div class="chips"><span>Scikit-learn</span><span>Random Forest</span><span>XGBoost</span><span>LightGBM</span><span>EDA</span></div></article>
+            <article class="skill-card"><div class="skill-number">03</div><h3>Backend Engineering</h3><p>Developing APIs, authentication flows and background processing.</p><div class="chips"><span>Flask</span><span>FastAPI</span><span>SQLAlchemy</span><span>JWT</span><span>Celery</span></div></article>
+            <article class="skill-card"><div class="skill-number">04</div><h3>Data & Infrastructure</h3><p>Persistence, caching, application services and deployment workflows.</p><div class="chips"><span>SQLite</span><span>PostgreSQL</span><span>Redis</span><span>Git</span><span>Render</span></div></article>
+            <article class="skill-card"><div class="skill-number">05</div><h3>Frontend</h3><p>Building responsive interfaces and connecting them to backend APIs.</p><div class="chips"><span>Vue 3</span><span>Vite</span><span>HTML</span><span>CSS</span></div></article>
+            <article class="skill-card"><div class="skill-number">06</div><h3>Exploration</h3><p>Areas I’m actively curious about and looking to study more deeply.</p><div class="chips"><span>Neural Networks</span><span>LLMs</span><span>Cybersecurity</span><span>Robotics</span><span>Quantum</span></div></article>
+          </div>
+          <div class="note-strip"><span class="note-icon">i</span><p>This is a working skills snapshot, not a claim of equal proficiency across every tool. The portfolio can be updated as projects and experience grow.</p></div>
+        </section>
 
-      function addDot(x, y, isNew) {
-        var c = document.createElementNS(NS, "circle");
-        c.setAttribute("cx", x); c.setAttribute("cy", y);
-        c.setAttribute("class", "dot" + (isNew ? " new" : ""));
-        c.setAttribute("r", 0);
-        dotsG.appendChild(c);
-        requestAnimationFrame(function () { c.setAttribute("r", 6); });
-        pts.push([x, y]);
-      }
+        <section class="page" data-title="Projects" id="projects">
+          <div class="section-heading"><div class="eyebrow">04 / SELECTED WORK</div><h2>Built through <em>curiosity.</em></h2><p>Selected academic and independent development work.</p></div>
+          <div class="project-list">
+            <article class="project-card"><div class="project-top"><span class="project-type">01 — WEB APPLICATION</span><span class="project-state">FULL-STACK</span></div><h3>Quiz Master / IntelliQuest 2.0</h3><p>An exam-preparation platform with quiz management, scheduling, timed attempts, score tracking and separate admin/user experiences.</p><div class="chips"><span>Vue 3</span><span>Flask</span><span>SQLite</span><span>Redis</span><span>Celery</span></div><div class="project-foot"><span>API · AUTH · BACKGROUND JOBS</span><span>↗</span></div></article>
+            <article class="project-card"><div class="project-top"><span class="project-type">02 — MACHINE LEARNING</span><span class="project-state">PREDICTIVE MODELING</span></div><h3>Flight Price Prediction</h3><p>A regression workflow exploring fare prediction through data preprocessing, feature engineering, model comparison and ensemble-ready evaluation.</p><div class="chips"><span>Python</span><span>Random Forest</span><span>XGBoost</span><span>LightGBM</span><span>Scikit-learn</span></div><div class="project-foot"><span>EDA · MODELING · EVALUATION</span><span>↗</span></div></article>
+            <article class="project-card"><div class="project-top"><span class="project-type">03 — AGENT SYSTEM</span><span class="project-state">API / AUTOMATION</span></div><h3>Ledger / Invoice Agent</h3><p>An agent-oriented invoice workflow built around an API service, agent-card discovery and task handling, with local model experimentation.</p><div class="chips"><span>Python</span><span>FastAPI</span><span>Uvicorn</span><span>Agent Protocols</span><span>Ollama</span></div><div class="project-foot"><span>BACKEND · AGENT WORKFLOWS</span><span>↗</span></div></article>
+          </div>
+          <div class="note-strip"><span class="note-icon">+</span><p>Project repositories, live demos, screenshots and detailed outcomes can be linked here once their public URLs are supplied.</p></div>
+        </section>
 
-      function refit() {
-        var n = pts.length;
-        if (n < 2) { fit.style.opacity = 0; readout.textContent = "Add at least two points."; return; }
-        var sx = 0, sy = 0, sxy = 0, sxx = 0;
-        pts.forEach(function (p) { sx += p[0]; sy += p[1]; sxy += p[0]*p[1]; sxx += p[0]*p[0]; });
-        var d = n * sxx - sx * sx;
-        var m = d === 0 ? 0 : (n * sxy - sx * sy) / d;
-        var b = (sy - m * sx) / n;
-        var ya = Math.max(Y0, Math.min(Y1, m * X0 + b));
-        var yb = Math.max(Y0, Math.min(Y1, m * X1 + b));
-        fit.style.opacity = 1;
-        fit.setAttribute("y1", ya); fit.setAttribute("y2", yb);
-        var trend = m < -0.05 ? "rising" : (m > 0.05 ? "falling" : "flat");
-        readout.textContent = n + " points, trend is " + trend + ".";
-      }
+        <section class="page" data-title="Experience" id="experience">
+          <div class="section-heading"><div class="eyebrow">05 / LEADERSHIP & COMMUNITY</div><h2>Beyond the <em>terminal.</em></h2><p>Organising people, enabling communities and making things happen.</p></div>
+          <div class="timeline">
+            <article class="timeline-item"><div class="timeline-date">STUDENT COMMUNITY</div><div class="timeline-marker"></div><div class="timeline-content"><h3>Web Administrator — Wayanad House</h3><p>Contributing to the house's digital presence and web-related activities.</p><span class="timeline-tag">WEB · COMMUNITY</span></div></article>
+            <article class="timeline-item"><div class="timeline-date">REGIONAL COORDINATION</div><div class="timeline-marker"></div><div class="timeline-content"><h3>Regional Coordinator — Wayanad, Kolkata</h3><p>Supporting regional coordination, student engagement and community activities.</p><span class="timeline-tag">COORDINATION · OUTREACH</span></div></article>
+            <article class="timeline-item"><div class="timeline-date">EVENT OPERATIONS</div><div class="timeline-marker"></div><div class="timeline-content"><h3>Deputy Event Head</h3><p>Supporting event planning, coordination and execution across student activities.</p><span class="timeline-tag">PLANNING · EXECUTION</span></div></article>
+          </div>
+          <div class="note-strip"><span class="note-icon">i</span><p>Dates and specific event names are intentionally omitted until confirmed. Add them to make this timeline more complete.</p></div>
+        </section>
 
-      function reset() {
-        dotsG.innerHTML = ""; pts = [];
-        start.forEach(function (p) { addDot(p[0], p[1], false); });
-        refit();
-      }
+        <section class="page" data-title="Education" id="education">
+          <div class="section-heading"><div class="eyebrow">06 / ACADEMIC FOUNDATION</div><h2>Learning to <em>think.</em></h2><p>Building a foundation in data, computation and analytical reasoning.</p></div>
+          <div class="education-card">
+            <div class="edu-symbol">IIT<br><span>M</span></div>
+            <div class="edu-content"><span class="card-label">2023 — 2027 · CONFIRMED PROGRAMME DETAILS</span><h3>Indian Institute of Technology Madras</h3><p class="degree">BS in Data Science and Applications</p><p>Coursework and independent learning across programming, mathematics, statistics, data science and computational problem-solving.</p><div class="chips"><span>Data Science</span><span>Programming</span><span>Statistics</span><span>Machine Learning</span></div></div>
+          </div>
+          <div class="education-foot"><div><span class="card-label">ACADEMIC INTEREST</span><strong>Computational intelligence</strong></div><div><span class="card-label">LEARNING APPROACH</span><strong>Concepts → Experiments → Systems</strong></div></div>
+        </section>
 
-      svg.addEventListener("click", function (e) {
-        var r = svg.getBoundingClientRect();
-        var x = (e.clientX - r.left) * 400 / r.width;
-        var y = (e.clientY - r.top) * 320 / r.height;
-        x = Math.max(X0 + 6, Math.min(X1 - 6, x));
-        y = Math.max(Y0 + 6, Math.min(Y1 - 6, y));
-        addDot(x, y, true); refit();
-      });
-      document.getElementById("rand").addEventListener("click", function () {
-        addDot(X0 + 20 + Math.random() * (X1 - X0 - 40), Y0 + 20 + Math.random() * (Y1 - Y0 - 40), true);
-        refit();
-      });
-      document.getElementById("reset").addEventListener("click", reset);
-      reset();
-    })();
-  </script>
+        <section class="page" data-title="Contact" id="contact">
+          <div class="contact-wrap">
+            <div class="eyebrow">07 / OPEN CHANNEL</div>
+            <h2>Have an idea?<br>Let's <em>connect.</em></h2>
+            <p class="hero-lead">Interested in technology, research, collaborative projects or thoughtful conversations around what's next.</p>
+            <a class="email-card" href="mailto:cchirantan0@gmail.com"><span class="card-label">EMAIL</span><strong>cchirantan0@gmail.com</strong><span class="email-arrow">↗</span></a>
+            <a class="email-card" href="https://www.linkedin.com/in/chirantan-chakraborty" target="_blank" rel="noreferrer"><span class="card-label">LINKEDIN</span><strong>linkedin.com/in/chirantan-chakraborty</strong><span class="email-arrow">↗</span></a>
+            <div class="contact-bottom"><span class="mono muted">BASED IN INDIA · OPEN TO LEARNING & COLLABORATION</span><span class="contact-signoff">CHIRANTAN<span>.</span></span></div>
+          </div>
+        </section>
+
+        <footer class="pager">
+          <div class="pager-left"><span class="mono muted">NAVIGATE</span><span id="page-count" class="page-count">01 <i>/</i> 07</span></div>
+          <div class="progress-track"><div id="progress" class="progress-fill"></div></div>
+          <div class="pager-actions"><button id="prev" class="pager-btn" disabled aria-label="Previous section">←</button><button id="next" class="pager-btn" aria-label="Next section">→</button></div>
+        </footer>
+      </section>
+    </main>
+    <div class="mobile-footer"><span>CHIRANTAN CHAKRABORTY</span><span>DEEP TECH PORTFOLIO © 2026</span></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
